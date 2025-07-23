@@ -76,7 +76,7 @@ app.get("/oauth2callback", async (req, res) => {
     const rawMessage = makeBody(
       userEmail,
       userEmail,
-      "💥 Correo enviado por esta demo",
+      " Correo enviado por esta demo",
       "Hola, este mensaje fue enviado automáticamente por una app usando tus permisos OAUTH."
     );
 
@@ -106,7 +106,7 @@ app.get("/oauth2callback", async (req, res) => {
     let emailInfo = `
       <h3>📬 Últimos correos (incluyendo el enviado):</h3>
       <div style="margin-bottom: 1em; border: 2px solid #ff9800; padding: 10px; background: #fff8e1;">
-        <strong>📤 Correo enviado por esta aplicación</strong><br>
+        <strong> Correo enviado por esta aplicación</strong><br>
         <strong>Asunto:</strong> ${sentSubject}<br>
         <strong>Remitente:</strong> ${sentFrom}<br>
         <strong>Fecha:</strong> ${sentDate}
@@ -169,10 +169,26 @@ app.get("/oauth2callback", async (req, res) => {
 app.get("/ping", (req, res) => res.send("pong"));
 
 // Iniciar servidor
-app.listen(PORT, '0.0.0.0', () => {
+app.listen(PORT, "0.0.0.0", () => {
+  showBanner();
   console.log(`Servidor corriendo en http://localhost:${PORT}`);
 
   if (process.env.NODE_ENV !== "production") {
     open(`http://localhost:${PORT}`);
   }
 });
+
+function showBanner() {
+  console.log(`
+╔══════════════════════════════════════════════════════════════╗
+║                                                              ║
+║    📧 Gmail OAUTH DEMO                                       ║
+║    by Ricardo Medina                                         ║
+║                                                              ║
+║    Esta demo muestra cómo una app puede leer y enviar        ║
+║    correos electrónicos usando OAUTH 2.0 sin conocer         ║
+║    tu contraseña.                                            ║
+║                                                              ║
+╚══════════════════════════════════════════════════════════════╝
+  `);
+}
