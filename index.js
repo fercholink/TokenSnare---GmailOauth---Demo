@@ -2,7 +2,6 @@
 import express from "express";
 import { google } from "googleapis";
 import open from "open";
-import fs from "fs/promises";
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -35,22 +34,19 @@ function makeBody(to, from, subject, message) {
     .replace(/=+$/, "");
 }
 
-// Cargar credenciales desde archivo JSON
-async function setupOAuth() {
-  const content = await fs.readFile("credentials.json", "utf8");
-  const credentials = JSON.parse(content).web;
-
+// Configurar cliente OAuth2 con variables de entorno
+function setupOAuth() {
   const redirectUri =
     process.env.REDIRECT_URI || "http://localhost:3000/oauth2callback";
 
   oauth2Client = new google.auth.OAuth2(
-    credentials.client_id,
-    credentials.client_secret,
+    process.env.GOOGLE_CLIENT_ID,
+    process.env.GOOGLE_CLIENT_SECRET,
     redirectUri
   );
 }
 
-await setupOAuth();
+setupOAuth();
 
 // Ruta principal: redirige al login de Google
 app.get("/", (req, res) => {
@@ -169,8 +165,11 @@ app.get("/oauth2callback", async (req, res) => {
   }
 });
 
+// Ruta de prueba para verificar disponibilidad
+app.get("/ping", (req, res) => res.send("pong"));
+
 // Iniciar servidor
-app.listen(PORT, '0.0.0.0',() => {
+app.listen(PORT, '0.0.0.0', () => {
   console.log(`Servidor corriendo en http://localhost:${PORT}`);
 
   if (process.env.NODE_ENV !== "production") {
