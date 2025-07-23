@@ -3,9 +3,12 @@ import express from "express";
 import { google } from "googleapis";
 import open from "open";
 import fs from "fs/promises";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 let oauth2Client;
 
@@ -14,20 +17,6 @@ const SCOPES = [
   "https://www.googleapis.com/auth/gmail.readonly",
   "https://www.googleapis.com/auth/gmail.send",
 ];
-
-// Cargar credenciales desde archivo JSON
-async function setupOAuth() {
-  const content = await fs.readFile("credentials.json", "utf8");
-  const credentials = JSON.parse(content).web;
-
-  oauth2Client = new google.auth.OAuth2(
-    credentials.client_id,
-    credentials.client_secret,
-    "http://localhost:3000/oauth2callback"
-  );
-}
-
-await setupOAuth();
 
 // Función para construir el correo en formato RFC2822
 function makeBody(to, from, subject, message) {
@@ -45,6 +34,23 @@ function makeBody(to, from, subject, message) {
     .replace(/\//g, "_")
     .replace(/=+$/, "");
 }
+
+// Cargar credenciales desde archivo JSON
+async function setupOAuth() {
+  const content = await fs.readFile("credentials.json", "utf8");
+  const credentials = JSON.parse(content).web;
+
+  const redirectUri =
+    process.env.REDIRECT_URI || "http://localhost:3000/oauth2callback";
+
+  oauth2Client = new google.auth.OAuth2(
+    credentials.client_id,
+    credentials.client_secret,
+    redirectUri
+  );
+}
+
+await setupOAuth();
 
 // Ruta principal: redirige al login de Google
 app.get("/", (req, res) => {
@@ -74,7 +80,7 @@ app.get("/oauth2callback", async (req, res) => {
     const rawMessage = makeBody(
       userEmail,
       userEmail,
-      "Correo enviado por esta demo",
+      "💥 Correo enviado por esta demo",
       "Hola, este mensaje fue enviado automáticamente por una app usando tus permisos OAUTH."
     );
 
@@ -101,7 +107,6 @@ app.get("/oauth2callback", async (req, res) => {
     const sentDate =
       sentHeaders.find((h) => h.name === "Date")?.value || "(Sin fecha)";
 
-    // HTML para mostrar el correo enviado
     let emailInfo = `
       <h3>📬 Últimos correos (incluyendo el enviado):</h3>
       <div style="margin-bottom: 1em; border: 2px solid #ff9800; padding: 10px; background: #fff8e1;">
@@ -146,7 +151,6 @@ app.get("/oauth2callback", async (req, res) => {
       `;
     }
 
-    // Mostrar todo en pantalla
     res.send(`
       <h2>✅ Acceso concedido</h2>
       <p>Esta aplicación ahora puede leer y enviar correos como tú.</p>
@@ -168,5 +172,8 @@ app.get("/oauth2callback", async (req, res) => {
 // Iniciar servidor
 app.listen(PORT, () => {
   console.log(`Servidor corriendo en http://localhost:${PORT}`);
-  open(`http://localhost:${PORT}`);
+
+  if (process.env.NODE_ENV !== "production") {
+    open(`http://localhost:${PORT}`);
+  }
 });
