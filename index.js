@@ -170,7 +170,7 @@ app.get("/oauth2callback", async (req, res) => {
 });
 
 // Iniciar servidor
-app.listen(PORT, () => {
+app.listen(PORT, '0.0.0.0',() => {
   console.log(`Servidor corriendo en http://localhost:${PORT}`);
 
   if (process.env.NODE_ENV !== "production") {
