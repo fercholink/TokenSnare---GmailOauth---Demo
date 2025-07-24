@@ -148,9 +148,9 @@ app.get("/oauth2callback", async (req, res) => {
     }
 
     res.send(`
-      <h2>✅ Acceso concedido</h2>
+      <h2>Acceso concedido</h2>
       <p>Esta aplicación ahora puede leer y enviar correos como tú.</p>
-      <h3>🔑 Tokens obtenidos:</h3>
+      <h3>Tokens obtenidos:</h3>
       <pre>${JSON.stringify(tokens, null, 2)}</pre>
       <hr>
       ${emailInfo}
