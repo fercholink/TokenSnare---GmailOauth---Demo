@@ -32,5 +32,3 @@ Esta es una demo educativa para mostrar cómo una aplicación web puede obtener 
 ### 1. Clona el repositorio
 
 ```bash
-git clone https://github.com/tu-usuario/gmail-oauth-demo.git
-cd gmail-oauth-demo
