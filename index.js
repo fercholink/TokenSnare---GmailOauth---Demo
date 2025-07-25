@@ -7,7 +7,7 @@ const PORT = process.env.PORT || 3000;
 
 app.use(
   session({
-    secret: "demo_gmail_secret", // puedes usar un valor más seguro
+    secret: "demo_gmail_secret", //usar un valor más seguro en producción
     resave: false,
     saveUninitialized: true,
   })
@@ -26,7 +26,9 @@ function showBanner() {
   console.log(`
 ╔══════════════════════════════════════════════════════════════╗
 ║                                                              ║
-║    Gmail OAUTH DEMO                                          ║
+║    🔐 TokenSnare                                            ║
+║                                                              ║
+║    Catch the token. Reveal the access. Teach the threat      ║
 ║    by Ricardo Medina                                         ║
 ║                                                              ║
 ╚══════════════════════════════════════════════════════════════╝

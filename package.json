@@ -1,11 +1,15 @@
+
 {
-  "name": "gmail-oauth-demo",
+  "name": "tokensnare",
   "version": "1.0.0",
   "type": "module",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
   },
+  "description": "Ethical hacking educational demo that captures and uses Gmail OAuth2 tokens for awareness and training.",
+  "author": "Ricardo Medina",
+  "license": "MIT",
   "dependencies": {
     "dotenv": "^16.3.1",
     "express": "^4.18.2",

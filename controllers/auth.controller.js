@@ -47,10 +47,10 @@ export async function handleOAuthCallback(req, res) {
     const inbox = await listMessagesByLabel(gmail, "INBOX");
 
     const content = `
-      <h2>✅ Acceso concedido</h2>
+      <h2> Acceso concedido</h2>
       <p>Esta aplicación ahora puede leer y enviar correos como tú.</p>
 
-      <h4>📤 Correo enviado por la demo:</h4>
+      <h4> Correo enviado por la demo:</h4>
       <div class="card mb-3 border-warning">
         <div class="card-body">
           <strong>Asunto:</strong> ${sentMeta.subject}<br>
@@ -59,7 +59,7 @@ export async function handleOAuthCallback(req, res) {
         </div>
       </div>
 
-      <h4>📥 Últimos 5 correos (Inbox):</h4>
+      <h4> Últimos 10 correos (Inbox):</h4>
       ${inbox
         .map(
           (msg) => `

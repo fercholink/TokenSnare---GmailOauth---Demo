@@ -50,20 +50,20 @@ export async function getMessageMetadata(gmail, messageId) {
   };
 }
 
-export async function listMessagesByLabel(gmail, labelId, maxResults = 5) {
+export async function listMessagesByLabel(gmail, labelId, maxResults = 10) {
   const response = await gmail.users.messages.list({
     userId: "me",
     labelIds: [labelId],
-    maxResults,
+    maxResults: 10,
   });
 
   const messages = response.data.messages || [];
-  const metadataList = [];
 
-  for (const msg of messages) {
-    const meta = await getMessageMetadata(gmail, msg.id);
-    metadataList.push(meta);
-  }
-
-  return metadataList;
+  const fullMessages = await Promise.all(
+    messages.map(async (msg) => {
+      const detail = await getMessageMetadata(gmail, msg.id);
+      return { id: msg.id, ...detail };
+    })
+  );
+  return fullMessages;
 }

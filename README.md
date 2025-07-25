@@ -1,34 +1,62 @@
-#  Gmail OAuth Demo – Node.js
+#  TokenSnare – Ethical OAuth Exploitation Demo
 
-Esta es una demo educativa para mostrar cómo una aplicación web puede obtener acceso al correo electrónico de un usuario mediante OAuth 2.0, sin necesidad de conocer su contraseña. El objetivo es sensibilizar sobre los permisos excesivos y el uso indebido de aplicaciones aparentemente inofensivas.
-########################### Advertencia Ética ###########################
+**TokenSnare** es una aplicación demostrativa construida con Node.js que muestra cómo una app aparentemente inocente puede capturar y usar tokens OAuth 2.0 para acceder a servicios como Gmail. El objetivo es **educar sobre los riesgos de consentimiento excesivo** y **entrenar a profesionales en ciberseguridad y ethical hacking** en la manipulación controlada de tokens de acceso.
 
-    Esta aplicación tiene fines pedagógicos. Demuestra cómo una app puede obtener acceso sensible a través de consentimiento mal entendido. No debe usarse para prácticas de phishing reales ni contra usuarios sin consentimiento informado.
+> ⚠️ **Advertencia ética**  
+> Esta herramienta tiene fines exclusivamente pedagógicos. No debe utilizarse para acceder a cuentas de terceros sin consentimiento informado. Su uso está orientado a **entornos controlados**, simulaciones de seguridad y programas de formación.
 
-##### Autor
-    Ricardo Medina
+---
 
-#### Tecnologías utilizadas
+## Tecnologías utilizadas
 
 - Node.js + Express
 - Google APIs (`googleapis`)
-- Railway para despliegue en producción
+- Bootstrap 5 (interfaz minimalista)
+- Railway (despliegue en producción)
 
 ---
 
-##  Requisitos
+## Funcionalidades destacadas
 
-- Node.js ≥ 16.x
-- Cuenta de Google
-- Proyecto en Google Cloud Console con:
+- Inicio de sesión mediante Google OAuth2
+- Acceso al correo del usuario autenticado
+- Visualización de las últimas bandejas: Inbox, Sent, Trash, Spam
+- Envío de un correo automático como prueba de acceso
+- Interfaz modular y extensible para prácticas de seguridad
+
+---
+
+## Requisitos
+
+- Node.js v16 o superior
+- Cuenta de Google para pruebas
+- Proyecto configurado en Google Cloud Console con:
   - Gmail API habilitada
-  - People API
-  - ID de cliente OAuth 2.0 configurado
+  - People API habilitada
+  - Credenciales OAuth 2.0 configuradas
+  - Orígenes autorizados (local y Railway)
 
 ---
 
-##  Ejecutar en entorno local
- -- npm start
-### 1. Clona el repositorio
+## Ejecutar en entorno local
+
+1. Clona el repositorio:
 
 ```bash
+git clone https://github.com/tu-usuario/tokensnare.git
+cd tokensnare
+
+2. Instala dependencias
+
+npm install
+
+3. Crea un archivo .env con tus credenciales de google: 
+GOOGLE_CLIENT_ID=tu_cliente_id
+GOOGLE_CLIENT_SECRET=tu_secreto
+REDIRECT_URI=http://localhost:3000/oauth2callback
+
+4. Ejecuta el servidor:
+
+npm start
+
+5. (opcional) despliega en entrono cloud PaaS // configura las variables de entorno en la nube
