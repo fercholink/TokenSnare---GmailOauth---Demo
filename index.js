@@ -26,7 +26,7 @@ function showBanner() {
   console.log(`
 ╔══════════════════════════════════════════════════════════════╗
 ║                                                              ║
-║    🔐 TokenSnare                                            ║
+║    🔐TokenSnare                                            ║
 ║                                                              ║
 ║    Catch the token. Reveal the access. Teach the threat      ║
 ║    by Ricardo Medina                                         ║
