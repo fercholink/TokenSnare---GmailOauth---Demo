@@ -12,7 +12,7 @@
 - Node.js + Express
 - Google APIs (`googleapis`)
 - Bootstrap 5 (interfaz minimalista)
-- Railway (despliegue en producción)
+- Railway (despliegue en producción) //opcional
 
 ---
 
@@ -21,6 +21,7 @@
 - Inicio de sesión mediante Google OAuth2
 - Acceso al correo del usuario autenticado
 - Visualización de las últimas bandejas: Inbox, Sent, Trash, Spam
+- Visualización de adjuntos //pdf por lo pronto :)
 - Envío de un correo automático como prueba de acceso
 - Interfaz modular y extensible para prácticas de seguridad
 
