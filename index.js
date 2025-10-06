@@ -7,7 +7,7 @@ const PORT = process.env.PORT || 3000;
 
 app.use(
   session({
-    secret: "demo_gmail_secret", //usar un valor más seguro en producción
+    secret: "demo_gmail_secret", //se debe usar un valor más seguro en producción
     resave: false,
     saveUninitialized: true,
   })
