@@ -19,7 +19,7 @@ app.use(express.static(path.join(__dirname, "public")));
 // Middleware de sesión
 app.use(
   session({
-    secret: "clave-secreta-gmail-demo", // cámbiala en producción
+    secret: "clave-secreta-gmail-demo", // se debe cambisr en producción
     resave: false,
     saveUninitialized: true,
     cookie: { secure: false },
