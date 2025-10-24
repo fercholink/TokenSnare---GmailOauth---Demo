@@ -1,4 +1,3 @@
-// index.js
 import app from "./app.js";
 import open from "open";
 import session from "express-session";
@@ -7,7 +6,7 @@ const PORT = process.env.PORT || 3000;
 
 app.use(
   session({
-    secret: "demo_gmail_secret", //se debe usar un valor más seguro en producción
+    secret: "demo_gmail_secret",
     resave: false,
     saveUninitialized: true,
   })
@@ -26,7 +25,7 @@ function showBanner() {
   console.log(`
 ╔══════════════════════════════════════════════════════════════╗
 ║                                                              ║
-║    🔐TokenSnare                                            ║
+║    TokenSnare                                                ║
 ║                                                              ║
 ║    Catch the token. Reveal the access. Teach the threat      ║
 ║    by Ricardo Medina                                         ║

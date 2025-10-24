@@ -1,5 +1,3 @@
-// views/layout.template.js
-
 export function renderLayout({
   title = "Gmail OAuth Demo",
   userEmail = "",

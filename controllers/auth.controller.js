@@ -1,4 +1,3 @@
-// controllers/auth.controller.js
 import { google } from "googleapis";
 import {
   getGmailClient,
@@ -80,10 +79,8 @@ export async function handleOAuthCallback(req, res) {
     res.status(500).send("Ocurrió un error durante la autenticación.");
   }
 }
-// controllers/auth.controller.js
-// ...otros imports...
 
 export function logoutUser(req, res) {
-  req.session = null; // elimina toda la sesión
-  res.redirect("/"); // redirige al inicio (vuelve a pedir autorización)
+  req.session = null;
+  res.redirect("/"); 
 }

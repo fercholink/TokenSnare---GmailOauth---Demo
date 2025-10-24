@@ -2,7 +2,7 @@
 
 **TokenSnare** es una aplicación demostrativa construida con Node.js que muestra cómo una app aparentemente inocente puede capturar y usar tokens OAuth 2.0 para acceder a servicios como Gmail. El objetivo es **educar sobre los riesgos de consentimiento excesivo** y **entrenar a profesionales en ciberseguridad y ethical hacking** en la manipulación controlada de tokens de acceso.
 
-> ⚠️ **Advertencia ética**  
+> **Advertencia ética**  
 > Esta herramienta tiene fines exclusivamente pedagógicos. No debe utilizarse para acceder a cuentas de terceros sin consentimiento informado. Su uso está orientado a **entornos controlados**, simulaciones de seguridad y programas de formación.
 
 ---
@@ -11,7 +11,7 @@
 
 - Node.js + Express
 - Google APIs (`googleapis`)
-- Bootstrap 5 (interfaz minimalista)
+- Bootstrap 5
 - Railway (despliegue en producción) //opcional
 
 ---

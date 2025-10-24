@@ -1,6 +1,5 @@
-// services/gmail.service.js
 import { google } from "googleapis";
-// Función para construir el correo en formato RFC2822
+
 import { makeBody } from "../utils/makeBody.js";
 
 export function getGmailClient(tokens) {

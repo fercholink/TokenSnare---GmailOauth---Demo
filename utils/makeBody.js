@@ -1,4 +1,3 @@
-// utils/makeBody.js
 export function makeBody(to, from, subject, message) {
   const str = [
     `To: ${to}`,
